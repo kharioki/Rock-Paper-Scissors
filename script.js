@@ -1,5 +1,8 @@
 const selectionButtons = document.querySelectorAll('[data-selection]');
 const finalColumn = document.querySelector('[data-final-column]');
+const computerScoreSpan = document.querySelector('[data-computer-score]');
+const yourScoreSpan = document.querySelector('[data-your-score]');
+
 const SELECTIONS = [
   {
     name: 'rock',
@@ -35,6 +38,15 @@ function makeSelection(selection) {
 
   addSelectionResult(computerSelection, computerWin);
   addSelectionResult(selection, youWin);
+
+  // increment score if you or computer win
+  if (youWin) incrementScore(yourScoreSpan);
+  if (computerWin) incrementScore(computerScoreSpan);
+}
+
+// incrememnt score
+function incrementScore(scoreSpan) {
+  scoreSpan.innerText = parseInt(scoreSpan.innerText) + 1;
 }
 
 // show selected choice and winner
